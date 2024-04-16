@@ -5,6 +5,8 @@ export const ap = series
 
 let seriesTable: HTMLElement = document.getElementById("infoSeries")!;
 
+let card: HTMLElement= document.getElementById('tarjeta-container')!;
+
 function mostrarDatosSeries(series:Serie[]){
 
     let total: number = 0;
@@ -21,17 +23,7 @@ function mostrarDatosSeries(series:Serie[]){
                 <td>${serie.channel}</td>
                 <td>${serie.seasons}</td> </tr>`
         tbodySeries.addEventListener("click", function(){
-            const card = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${serie.name}</h5>
-                    <p class="card-text">Channel: ${serie.channel}</p>
-                    <p class="card-text">Seasons: ${serie.seasons}</p>
-                    <p class="card-text">Description: ${serie.description}</p>
-                </div>
-            </div>`;
-         document.getElementById('tarjeta-container')!.innerHTML = card;
-
+            mostrarTarjetas(i);
         });
         }
     const average = total / series.length;
@@ -45,6 +37,20 @@ function mostrarDatosSeries(series:Serie[]){
 }
 
 
+function mostrarTarjetas(i:number){
+    const card = `
+    <div class="card">
+        <div class="card-body" style="width: 18rem;">
+            <img class="card-img-top" src="${series[i].image}">
+            <div class="card-body">
+            <h5 class="card-title">${series[i].name}</h5>
+            <p class="card-text">${series[i].description}</p>
+            <a href="${series[i].urlInformation}" class="card-link">${series[i].urlInformation}</a>
+          </div>
+        </div>
+    </div>`;
+ document.getElementById('tarjeta-container')!.innerHTML = card;
+}
 console.log(ap)
 
 console.log("hola mundo")
